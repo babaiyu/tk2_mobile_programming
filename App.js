@@ -1,4 +1,5 @@
 import React from "react";
+import { PaperProvider } from "react-native-paper";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -11,11 +12,22 @@ const Stack = createNativeStackNavigator();
 // Main program
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="LOGIN_SCREEN">
-        <Stack.Screen name="LOGIN_SCREEN" component={LoginScreen} />
-        <Stack.Screen name="CATALOG_SCREEN" component={CatalogScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <PaperProvider>
+      <NavigationContainer>
+        {/* Daftar semua halaman */}
+        <Stack.Navigator initialRouteName="LOGIN_SCREEN">
+          <Stack.Screen
+            name="LOGIN_SCREEN"
+            component={LoginScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="CATALOG_SCREEN"
+            component={CatalogScreen}
+            options={{ title: "Catalog" }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </PaperProvider>
   );
 }
